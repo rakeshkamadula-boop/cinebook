@@ -3,7 +3,8 @@ const params = new URLSearchParams(window.location.search);
 
 const movie = params.get("movie");
 const theatre = params.get("theatre");
-
+document.getElementById("movieInfo").textContent = "Movie: " + (movie || "Not selected");
+document.getElementById("theatreInfo").textContent = "Theatre: " + (theatre || "Not selected");
 const dateInput = document.getElementById("showDate");
 const timeOptions = document.getElementById("timeOptions");
 const continueButton = document.getElementById("continueButton");

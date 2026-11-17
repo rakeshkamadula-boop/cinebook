@@ -1,0 +1,185 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Theatre | CineBook</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .theatre-section {
+            max-width: 1150px;
+            margin: 55px auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .theatre-section h2 {
+            font-size: 36px;
+            color: #ffffff;
+            margin-bottom: 12px;
+        }
+
+        .theatre-section .subtitle {
+            color: #00d9ff;
+            font-size: 17px;
+            margin-bottom: 40px;
+        }
+
+        .theatre-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 28px;
+            margin-top: 25px;
+        }
+
+        .theatre-card {
+            padding: 25px;
+            background: linear-gradient(145deg, #10243d, #071426);
+            border: 1px solid rgba(22, 140, 255, 0.4);
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            transition: all 0.35s ease;
+            text-align: center;
+        }
+
+        .theatre-card:hover {
+            transform: translateY(-10px);
+            border-color: #00d9ff;
+            box-shadow: 0 0 25px rgba(0, 140, 255, 0.35);
+        }
+
+        .theatre-banner {
+            height: 145px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 22px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #0755a5, #071426);
+            color: #ffffff;
+            font-size: 25px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            text-shadow: 0 0 12px #00d9ff;
+            border: 1px solid rgba(0, 217, 255, 0.4);
+        }
+
+        .theatre-card h3 {
+            color: #ffffff;
+            font-size: 22px;
+            margin-bottom: 14px;
+        }
+
+        .theatre-card p {
+            color: #b7c9df;
+            margin: 9px 0;
+            font-size: 14px;
+        }
+
+        .theatre-card button {
+            margin-top: 22px;
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(90deg, #087bff, #00bfff);
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .theatre-card button:hover {
+            box-shadow: 0 0 18px rgba(0, 191, 255, 0.65);
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 600px) {
+            .theatre-section {
+                margin: 30px auto;
+            }
+
+            .theatre-section h2 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="navbar">
+    <h1 class="logo">CINE<span>BOOK</span></h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="index.html#movies">Movies</a>
+        <a href="my-bookings.html">My Bookings</a>
+    </nav>
+</header>
+
+<section class="theatre-section">
+    <h2>Select Your Theatre</h2>
+
+    <p class="subtitle" id="selectedMovie">
+        Choose a cinema for your movie
+    </p>
+
+    <div class="theatre-container">
+
+        <div class="movie-card theatre-card">
+            <div class="theatre-banner">CINEMA 01</div>
+            <h3>CineBook Cinemas</h3>
+            <p>Premium Cinema Experience</p>
+            <p>Dolby Sound | Luxury Seats</p>
+            <button onclick="selectTheatre('CineBook Cinemas')">
+                Select Theatre
+            </button>
+        </div>
+
+        <div class="movie-card theatre-card">
+            <div class="theatre-banner">CINEMA 02</div>
+            <h3>PVR Cinemas</h3>
+            <p>Premium Multiplex</p>
+            <p>Big Screen | Surround Sound</p>
+            <button onclick="selectTheatre('PVR Cinemas')">
+                Select Theatre
+            </button>
+        </div>
+
+        <div class="movie-card theatre-card">
+            <div class="theatre-banner">CINEMA 03</div>
+            <h3>INOX Cinemas</h3>
+            <p>Modern Movie Experience</p>
+            <p>Comfortable Seating</p>
+            <button onclick="selectTheatre('INOX Cinemas')">
+                Select Theatre
+            </button>
+        </div>
+
+    </div>
+</section>
+
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const movie = params.get("movie");
+
+    document.getElementById("selectedMovie").textContent =
+        movie ? "Selected Movie: " + movie : "Choose a cinema for your movie";
+
+    function selectTheatre(theatre) {
+        if (!movie) {
+            alert("Please select a movie first.");
+            window.location.href = "index.html";
+            return;
+        }
+
+        window.location.href =
+            "showtime.html?movie=" + encodeURIComponent(movie) +
+            "&theatre=" + encodeURIComponent(theatre);
+    }
+</script>
+
+</body>
+</html>

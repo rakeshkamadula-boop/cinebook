@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | CineBook</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .admin-section {
+            max-width: 1150px;
+            margin: 40px auto;
+            padding: 25px;
+            animation: cardEnter .7s ease both;
+        }
+
+        .admin-section h1 {
+            text-align: center;
+            color: #00d9ff;
+            margin-bottom: 12px;
+        }
+
+        .admin-subtitle {
+            text-align: center;
+            color: #a9c9e8;
+            margin-bottom: 35px;
+        }
+
+        .admin-heading {
+            color: #00d9ff;
+            margin: 35px 0 20px;
+        }
+
+        #dashboardStats,
+        #adminBookings {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        #dashboardStats > div,
+        #adminBookings > div {
+            background: linear-gradient(145deg, #142943, #091426);
+            border: 1px solid #168cff;
+            border-radius: 14px;
+            padding: 23px;
+            color: white;
+            box-shadow: 0 0 18px rgba(22,140,255,.12);
+            transition: .3s ease;
+        }
+
+        #dashboardStats > div:hover,
+        #adminBookings > div:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 0 22px rgba(22,140,255,.3);
+        }
+
+        #dashboardStats h3,
+        #adminBookings h3 {
+            color: #00d9ff;
+            margin-bottom: 15px;
+        }
+
+        #dashboardStats p,
+        #adminBookings p {
+            color: #d5eaff;
+            margin: 10px 0;
+        }
+
+        @media(max-width: 600px) {
+            .admin-section {
+                margin: 20px 10px;
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="navbar">
+    <h1 class="logo">CINE<span>BOOK</span> ADMIN</h1>
+    <nav>
+        <a href="index.html">Home</a>
+    </nav>
+</header>
+
+<section class="admin-section">
+    <h1>Admin Dashboard</h1>
+    <p class="admin-subtitle">
+        Manage and monitor your CineBook application
+    </p>
+
+    <h2 class="admin-heading">Dashboard Statistics</h2>
+
+    <div id="dashboardStats">
+        <p>Loading dashboard...</p>
+    </div>
+
+    <h2 class="admin-heading">All Bookings</h2>
+
+    <div id="adminBookings">
+        <p>Loading bookings...</p>
+    </div>
+</section>
+
+<script src="admin.js"></script>
+
+</body>
+</html>

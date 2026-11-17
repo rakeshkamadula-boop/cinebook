@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Showtime | CineBook</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .showtime-box {
+            max-width: 850px;
+            margin: 35px auto;
+            padding: 35px;
+            background: linear-gradient(145deg, #101f35, #091426);
+            border: 1px solid #168cff;
+            border-radius: 18px;
+            box-shadow: 0 0 25px rgba(22,140,255,0.15);
+            animation: cardEnter 0.7s ease both;
+        }
+
+        .showtime-box h3 {
+            margin: 28px 0 15px;
+            color: #00d9ff;
+        }
+
+        .showtime-box p {
+            margin: 12px 0;
+            color: #d5eaff;
+            font-size: 16px;
+        }
+
+        .showtime-box input {
+            padding: 14px;
+            width: 100%;
+            background: #142943;
+            color: white;
+            border: 1px solid #168cff;
+            border-radius: 9px;
+            outline: none;
+            color-scheme: dark;
+        }
+
+        .showtime-box input:focus {
+            border-color: #00d9ff;
+            box-shadow: 0 0 12px rgba(0,217,255,0.3);
+        }
+
+        .time-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .time-options button {
+            padding: 14px 23px;
+            background: #142943;
+            border: 1px solid #168cff;
+            color: white;
+            border-radius: 9px;
+            cursor: pointer;
+            transition: 0.25s ease;
+        }
+
+        .time-options button:hover {
+            background: #087bff;
+            box-shadow: 0 0 15px rgba(22,140,255,0.5);
+            transform: translateY(-3px);
+        }
+
+        .time-options button.active {
+            background: #087bff;
+            border-color: #00d9ff;
+            box-shadow: 0 0 15px #168cff;
+        }
+
+        .continue-btn {
+            margin-top: 32px;
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(90deg, #087bff, #00bfff);
+            border: none;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            border-radius: 9px;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .continue-btn:hover {
+            box-shadow: 0 0 20px #168cff;
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 600px) {
+            .showtime-box {
+                margin: 20px 12px;
+                padding: 22px;
+            }
+
+            .time-options {
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="navbar">
+    <h1 class="logo">CINE<span>BOOK</span></h1>
+    <nav>
+        <a href="index.html">Home</a>
+    </nav>
+</header>
+
+<section class="movies-section">
+    <h2>Select Date & Showtime</h2>
+
+    <div class="showtime-box">
+        <p id="movieInfo">Movie: Loading...</p>
+        <p id="theatreInfo">Theatre: Loading...</p>
+
+        <h3>Select Date</h3>
+        <input type="date" id="showDate">
+
+        <h3>Select Showtime</h3>
+        <div class="time-options" id="timeOptions">
+            Loading showtimes...
+        </div>
+
+        <button class="continue-btn" id="continueButton">
+            Continue to Seat Selection
+        </button>
+    </div>
+</section>
+
+<script src="showtime.js"></script>
+
+</body>
+</html>

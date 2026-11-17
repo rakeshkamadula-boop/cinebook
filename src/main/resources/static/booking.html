@@ -1,0 +1,285 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Seats | CineBook</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .cinema-booking {
+            max-width: 1100px;
+            margin: 35px auto;
+            padding: 30px;
+            background: linear-gradient(145deg, #101f35, #091426);
+            border: 1px solid #168cff;
+            border-radius: 18px;
+            box-shadow: 0 0 25px rgba(22,140,255,.15);
+            animation: cardEnter .7s ease both;
+        }
+
+        .booking-details {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding-bottom: 22px;
+            border-bottom: 1px solid #254568;
+        }
+
+        .booking-details h3 {
+            color: #00d9ff;
+        }
+
+        .booking-details p {
+            color: #c2d8ef;
+            margin-top: 8px;
+        }
+
+        .screen-area {
+            margin: 50px auto 35px;
+            max-width: 650px;
+            text-align: center;
+        }
+
+        .cinema-screen {
+            height: 12px;
+            background: linear-gradient(90deg, transparent, #00d9ff, white, #00d9ff, transparent);
+            border-radius: 50%;
+            box-shadow: 0 8px 30px rgba(0,217,255,.65);
+        }
+
+        .screen-area p {
+            color: #8bb8df;
+            margin-top: 20px;
+            letter-spacing: 5px;
+            font-size: 12px;
+        }
+
+        .seat-legend {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 22px;
+            margin: 28px 0;
+            color: #d5eaff;
+            font-size: 13px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .legend-seat {
+            width: 17px;
+            height: 17px;
+            border-radius: 5px;
+            background: #142943;
+            border: 1px solid #168cff;
+        }
+
+        .legend-seat.selected {
+            background: #168cff;
+        }
+
+        .legend-seat.sold {
+            background: #e53935;
+            border-color: #ff6666;
+        }
+
+        .seat-category {
+            text-align: center;
+            color: #00d9ff;
+            margin: 32px 0 18px;
+            font-size: 14px;
+            letter-spacing: 2px;
+        }
+
+        .seat-grid {
+            display: grid;
+            grid-template-columns: repeat(13, minmax(0, 1fr));
+            gap: 9px 6px;
+            max-width: 720px;
+            margin: auto;
+        }
+
+        .seat {
+            min-width: 0;
+            padding: 9px 2px;
+            background: #142943;
+            color: white;
+            border: 1px solid #168cff;
+            border-radius: 7px 7px 4px 4px;
+            font-size: 11px;
+            cursor: pointer;
+            transition: .2s ease;
+        }
+
+        .seat:hover:not(:disabled) {
+            background: #087bff;
+            box-shadow: 0 0 12px #168cff;
+            transform: translateY(-2px);
+        }
+
+        .seat.selected {
+            background: #168cff;
+            border-color: #00d9ff;
+            box-shadow: 0 0 12px rgba(0,217,255,.5);
+            color: white;
+        }
+
+        .seat.booked,
+        .seat:disabled {
+            background: #e53935 !important;
+            border-color: #ff6666 !important;
+            color: white !important;
+            cursor: not-allowed;
+            opacity: 1;
+        }
+
+        .seat.aisle {
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .seat-summary {
+            margin-top: 42px;
+            padding: 25px;
+            background: #142943;
+            border: 1px solid #168cff;
+            border-radius: 14px;
+        }
+
+        .seat-summary h3 {
+            color: #00d9ff;
+            margin-bottom: 18px;
+        }
+
+        .seat-summary p {
+            color: #d5eaff;
+            margin: 12px 0;
+        }
+
+        #totalPrice {
+            color: #00d9ff;
+            margin-top: 18px;
+        }
+
+        .confirm-btn {
+            margin-top: 22px;
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(90deg, #087bff, #00bfff);
+            color: white;
+            border: none;
+            border-radius: 9px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: .3s ease;
+        }
+
+        .confirm-btn:hover {
+            box-shadow: 0 0 20px #168cff;
+            transform: translateY(-3px);
+        }
+
+        @media(max-width: 650px) {
+            .cinema-booking {
+                padding: 12px;
+                margin: 20px 8px;
+            }
+
+            .seat-grid {
+                gap: 7px 3px;
+            }
+
+            .seat {
+                padding: 8px 0;
+                font-size: 9px;
+            }
+
+            .booking-details {
+                flex-direction: column;
+            }
+
+            .seat-legend {
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="navbar">
+    <h1 class="logo">CINE<span>BOOK</span></h1>
+    <nav>
+        <a href="index.html">Home</a>
+    </nav>
+</header>
+
+<section class="movies-section">
+    <h2>Select Your Seats</h2>
+    <p class="subtitle">Choose your favourite seats and enjoy the movie.</p>
+
+    <div class="cinema-booking">
+
+        <div class="booking-details">
+            <div>
+                <h3 id="movieName">Movie</h3>
+                <p id="theatreName">Theatre</p>
+            </div>
+            <div>
+                <p id="showDate">Date</p>
+                <p id="showTime">Showtime</p>
+            </div>
+        </div>
+
+        <div class="screen-area">
+            <div class="cinema-screen"></div>
+            <p>ALL EYES THIS WAY</p>
+        </div>
+
+        <div class="seat-legend">
+            <div class="legend-item">
+                <span class="legend-seat"></span> Available
+            </div>
+            <div class="legend-item">
+                <span class="legend-seat selected"></span> Selected
+            </div>
+            <div class="legend-item">
+                <span class="legend-seat sold"></span> Sold
+            </div>
+        </div>
+
+        <h3 class="seat-category">PREMIUM — ₹300</h3>
+        <div class="seat-grid" id="premiumSeats"></div>
+
+        <h3 class="seat-category">GOLD — ₹220</h3>
+        <div class="seat-grid" id="goldSeats"></div>
+
+        <h3 class="seat-category">SILVER — ₹150</h3>
+        <div class="seat-grid" id="silverSeats"></div>
+
+        <div class="seat-summary">
+            <h3>Booking Summary</h3>
+            <p id="selectedSeats">Selected seats: None</p>
+            <p id="seatCount">Tickets: 0</p>
+            <h2 id="totalPrice">Total: ₹0</h2>
+
+            <button class="confirm-btn" id="confirmBooking">
+                Confirm Booking
+            </button>
+        </div>
+
+    </div>
+</section>
+
+<script src="booking.js"></script>
+
+</body>
+</html>

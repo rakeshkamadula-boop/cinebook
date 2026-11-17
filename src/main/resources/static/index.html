@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineBook - Movie Ticket Booking</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <h1 class="logo">CINE<span>BOOK</span></h1>
+
+        <input type="text" id="searchInput"
+               placeholder="Search for movies...">
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#movies">Movies</a>
+            <a href="#about">About</a>
+            <a href="my-bookings.html">My Bookings</a>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div>
+            <p class="tagline">YOUR CINEMA EXPERIENCE STARTS HERE</p>
+            <h2>Experience the Magic of Cinema</h2>
+            <p>Choose your favourite movie, select your seats and enjoy the show.</p>
+            <a href="#movies" class="hero-btn">Explore Movies</a>
+        </div>
+    </section>
+
+    <section class="movies-section" id="movies">
+        <h2>Now Showing</h2>
+        <p class="subtitle">Explore Movies and Series</p>
+
+        <div class="movie-container" id="movieContainer">
+
+            <!-- SPIDER-MAN -->
+            <div class="movie-card">
+                <img
+                    src="https://timescineplex.com/times-cms/public/uploads/comingsoonseb08cdfc-8016-455d-a446-a2e224383210.jpg"
+                    alt="Spider-Man Brand New Day Poster">
+
+                <h3>Spider-Man: Brand New Day</h3>
+                <p>Action | Adventure | Sci-Fi</p>
+                <button onclick="bookMovie('Spider-Man: Brand New Day')">
+                    Book Tickets
+                </button>
+            </div>
+
+            <!-- STRANGER THINGS -->
+            <div class="movie-card">
+                <img
+                    src="https://www.out.com/media-library/teaser-poster-for-stranger-things-season-5.jpg?id=62145662&width=980"
+                    alt="Stranger Things Season 5 Poster">
+
+                <h3>Stranger Things</h3>
+                <p>Drama | Mystery | Sci-Fi</p>
+                <button onclick="bookMovie('Stranger Things')">
+                    Book Tickets
+                </button>
+            </div>
+
+            <!-- AVENGERS ENDGAME -->
+            <div class="movie-card">
+                <img
+                    src="https://media.vogue.mx/photos/5cc326b7224e5635d0ca74b9/master/pass/avengers-endgame.jpg"
+                    alt="Avengers Endgame Poster">
+
+                <h3>Avengers: Endgame</h3>
+                <p>Action | Adventure | Fantasy</p>
+                <button onclick="bookMovie('Avengers: Endgame')">
+                    Book Tickets
+                </button>
+            </div>
+
+        </div>
+
+        <p id="noResults" hidden>No movies found.</p>
+    </section>
+
+    <section class="about" id="about">
+        <h2>About CineBook</h2>
+        <p>Your simple and convenient destination for movie ticket booking.</p>
+    </section>
+
+    <footer>
+        <p>© 2026 CineBook | Movie Ticket Booking System</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
